@@ -72,7 +72,7 @@ public abstract class Shape
             Canvas canvas = Canvas.getCanvas();
             canvas.erase(this);
         }
-    }    
+    }     
     
     /*
      * Draw the shape with current specifications on screen.

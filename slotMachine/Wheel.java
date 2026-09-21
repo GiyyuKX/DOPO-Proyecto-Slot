@@ -10,6 +10,7 @@ public class Wheel
     private ArrayList<Symbol> symbols = new ArrayList<>();
     private Symbol actualSymbol;
     private Rectangle body;
+    private boolean visible;
        
     public Wheel(){
         this.body = new Rectangle(20, 20, 70, 70, "white");
@@ -45,7 +46,11 @@ public class Wheel
                 }
                 actualSymbol = symbol;
                 actualSymbol.setPosition(body.getX(), body.getY());
-                actualSymbol.makeVisible();
+                
+                if (visible){
+                    actualSymbol.makeVisible();
+                }
+                
                 return;
             }
         }
@@ -60,20 +65,38 @@ public class Wheel
         return false;
     }
     
+    public void makeVisible(){
+        body.makeVisible();
+        visible = true;
+        
+        if(actualSymbol != null){
+            actualSymbol.makeVisible();
+        }
+    }
+    
+    public void makeInvisible(){
+        body.makeInvisible();
+        visible = false;
+        
+        if(actualSymbol != null){
+            actualSymbol.makeInvisible();
+        }
+    }
+    
     public int getSymbolsSize(){
         return symbols.size();
+    }
+    
+    public ArrayList<Symbol> getSymbols(){
+        return symbols;
     }
     
     public String getSymbolColor(int pos){
         return symbols.get(pos).getColor();
     }
     
-    public void makeVisible(){
-        body.makeVisible();
-    
-        if(actualSymbol != null){
-            actualSymbol.makeVisible();
-        }
+    public Symbol getActualSymbol(){
+        return this.actualSymbol;
     }
     
     public void setPosition(int x, int y){

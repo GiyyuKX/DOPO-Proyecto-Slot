@@ -1,5 +1,5 @@
 #BlueJ class context
-#Mon Sep 21 01:08:54 COT 2026
+#Mon Sep 21 18:40:49 COT 2026
 comment0.target=SlotMachine
 comment0.text=\r\n Slot machine with full game logic\r\n\r\n @author Santiago Vargas\r\n
 comment1.target=SlotMachine()
@@ -13,6 +13,8 @@ comment16.target=boolean ok()
 comment17.target=void repositionWheels()
 comment18.params=message
 comment18.target=void operationFail(java.lang.String)
+comment19.params=left right bodyColor
+comment19.target=void setColors(java.lang.String, java.lang.String, java.lang.String)
 comment2.params=pos
 comment2.target=void addWheel(int)
 comment3.params=pos
@@ -27,4 +29,4 @@ comment7.params=wheel
 comment7.target=void spin(int)
 comment8.target=void spin()
 comment9.target=java.lang.String[] symbols()
-numComments=19
+numComments=20

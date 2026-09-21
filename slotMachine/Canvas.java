@@ -167,7 +167,10 @@ public class Canvas{
         graphic.fill(new java.awt.Rectangle(0, 0, size.width, size.height));
         graphic.setColor(original);
     }
-
+    
+    public void close() {
+        frame.setVisible(false);
+    }
 
     /************************************************************************
      * Inner class CanvasPane - the actual canvas component contained in the
