@@ -1,0 +1,26 @@
+#BlueJ class context
+#Sun Sep 20 23:28:23 COT 2026
+comment0.target=Shape
+comment0.text=\r\n Superclass Shape with the basic methods and atributes for Star and Rectangle\r\n\r\n @author Santiago Vargas\r\n
+comment1.params=x y color
+comment1.target=Shape(int, int, java.lang.String)
+comment10.target=int getY()
+comment2.target=void makeVisible()
+comment2.text=\r\n Make this star visible. If it was already visible, do nothing.\r\n
+comment3.target=void makeInvisible()
+comment3.text=\r\n Make this star invisible. If it was already invisible, do nothing.\r\n
+comment4.params=newColor
+comment4.target=void changeColor(java.lang.String)
+comment4.text=\r\n Change the color. \r\n @param color the new color. Valid colors are "red", "yellow", "blue", "green",\r\n "magenta" and "black".\r\n
+comment5.params=distance
+comment5.target=void moveHorizontal(int)
+comment5.text=\r\n Move the star horizontally.\r\n @param distance the desired distance in pixels\r\n
+comment6.params=distance
+comment6.target=void moveVertical(int)
+comment6.text=\r\n Move the star vertically.\r\n @param distance the desired distance in pixels\r\n
+comment7.target=void erase()
+comment7.text=\r\n Erase the shape on screen.\r\n
+comment8.target=void draw()
+comment8.text=\r\n Draw the shape with current specifications on screen.\r\n
+comment9.target=int getX()
+numComments=11

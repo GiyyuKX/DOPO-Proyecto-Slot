@@ -1,0 +1,20 @@
+#BlueJ class context
+#Mon Sep 21 00:46:56 COT 2026
+comment0.target=Wheel
+comment0.text=\r\n A Wheel from a slotmachine\r\n\r\n @author Santiago Vargas\r\n
+comment1.target=Wheel()
+comment2.params=color
+comment2.target=void addSymbol(java.lang.String)
+comment3.params=color
+comment3.target=void delSymbol(java.lang.String)
+comment4.params=color
+comment4.target=void placeSymbol(java.lang.String)
+comment5.params=color
+comment5.target=boolean containsSymbol(java.lang.String)
+comment6.target=int getSymbolsSize()
+comment7.params=pos
+comment7.target=java.lang.String getSymbolColor(int)
+comment8.target=void makeVisible()
+comment9.params=x y
+comment9.target=void setPosition(int, int)
+numComments=10

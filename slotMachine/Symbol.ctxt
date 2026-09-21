@@ -1,0 +1,16 @@
+#BlueJ class context
+#Sun Sep 20 23:28:23 COT 2026
+comment0.target=Symbol
+comment0.text=\r\n A Symbol from a wheel\r\n\r\n @author Santiago Vargas\r\n
+comment1.params=color
+comment1.target=Symbol(java.lang.String)
+comment2.params=distance
+comment2.target=void moveHorizontal(int)
+comment3.params=distance
+comment3.target=void moveVertical(int)
+comment4.target=void makeVisible()
+comment5.target=void makeInvisible()
+comment6.target=java.lang.String getColor()
+comment7.params=x y
+comment7.target=void setPosition(int, int)
+numComments=8
