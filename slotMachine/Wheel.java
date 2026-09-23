@@ -11,9 +11,11 @@ public class Wheel
     private Symbol actualSymbol;
     private Rectangle body;
     private boolean visible;
+    private boolean locked;
        
     public Wheel(){
         this.body = new Rectangle(20, 20, 70, 70, "white");
+        boolean locked = false;
     }
     
     public void addSymbol(String color){
@@ -110,5 +112,17 @@ public class Wheel
             actualSymbol.moveHorizontal(dx);
             actualSymbol.moveVertical(dy);
         }
+    }
+    
+    public void lock(){
+        this.locked = true;
+    }
+    
+    public void unlock(){
+        this.locked = false;
+    }
+    
+    public boolean locked(){
+        return locked;
     }
 }

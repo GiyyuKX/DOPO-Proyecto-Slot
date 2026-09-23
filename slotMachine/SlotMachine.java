@@ -85,8 +85,13 @@ public class SlotMachine
             operationFail("Rueda no existe...");
             return;
         }
-        
+                
         Wheel selectedWheel = wheels.get(wheel - 1);
+        
+        if (selectedWheel.locked()){
+            //TOASK falla si intenta spinear una rueda bloqueada? operationFail("Rueda no existe...");
+            return;
+        }
         
         if(selectedWheel.containsSymbol(symbol)) {
             selectedWheel.placeSymbol(symbol);
@@ -245,6 +250,7 @@ public class SlotMachine
             makeVisible();
         }
         
+        isJackpot();
     }
     
     private void operationFail(String message){
@@ -262,5 +268,85 @@ public class SlotMachine
             makeVisible();
         }
     }
-
+    
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // CICLO 2
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    
+    public void swap(int wheel1, int wheel2){
+        if (wheel1 < 1 || wheel1 > wheels.size() || wheel2 < 1 || wheel2 > wheels.size()){
+            operationFail("Alguna rueda no existe...");
+            return;
+        }
+        
+        if (wheel1 == wheel2){
+            operationFail("La rueda es la misma...");
+            return;
+        }
+            
+        Wheel wheel_swapped = wheels.get(wheel1 - 1);
+        wheels.set(wheel1 - 1, wheels.get(wheel2 - 1));
+        wheels.set(wheel2 - 1, wheel_swapped);
+        operationOK = true;
+        repositionWheels();
+    }
+    
+    public void lock(int wheel){
+        if (wheel < 1 || wheel > wheels.size()){
+            operationFail("La rueda no existe...");
+            return;
+        }
+        
+        Wheel sWheel = wheels.get(wheel - 1);
+        sWheel.lock();
+    }
+    
+    public void unlock(int wheel){
+        if (wheel < 1 || wheel > wheels.size()){
+            operationFail("La rueda no existe...");
+            return;
+        }
+        
+        Wheel sWheel = wheels.get(wheel - 1);
+        sWheel.unlock();
+    }
+    
+    public void spin(int wheel, int steps){
+        if (wheel < 1 || wheel > wheels.size()){
+            operationFail("Rueda no existe...");
+            return;
+        }
+        
+        Wheel sWheel = wheels.get(wheel - 1);
+        
+        for (int i = 0; i < steps; i++){
+            spin(wheel);
+            Canvas.getCanvas().wait(270);
+        }
+    }
+    
+    public void spin(String[] setSymbols){
+        //["red","green","blue"]
+        
+        for (int i = 0; i < setSymbols.length; i++) {
+            Wheel currentWheel = wheels.get(i);
+    
+            //Valida símbolo no existe
+            if (!currentWheel.containsSymbol(setSymbols[i])) {
+                operationFail("El simbolo no existe en la rueda");
+                return;
+            }
+    
+            //Si no tiene simbolo ponemos uno
+            if (currentWheel.getActualSymbol() == null) {
+                spin(i + 1);
+            }
+    
+            //Spin hasta encontrar el símbolo solicitado
+            while (!setSymbols[i].equals(currentWheel.getActualSymbol().getColor())) {
+                spin(i + 1);
+                Canvas.getCanvas().wait(200);
+            }
+        }
+    }
 }

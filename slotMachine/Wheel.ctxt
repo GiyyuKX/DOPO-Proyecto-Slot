@@ -1,5 +1,5 @@
 #BlueJ class context
-#Wed Sep 23 08:32:29 COT 2026
+#Wed Sep 23 11:33:52 COT 2026
 comment0.target=Wheel
 comment0.text=\r\n A Wheel from a slotmachine\r\n\r\n @author Santiago Vargas\r\n
 comment1.target=Wheel()
@@ -8,6 +8,9 @@ comment10.target=java.lang.String getSymbolColor(int)
 comment11.target=Symbol getActualSymbol()
 comment12.params=x y
 comment12.target=void setPosition(int, int)
+comment13.target=void lock()
+comment14.target=void unlock()
+comment15.target=boolean locked()
 comment2.params=color
 comment2.target=void addSymbol(java.lang.String)
 comment3.params=color
@@ -20,4 +23,4 @@ comment6.target=void makeVisible()
 comment7.target=void makeInvisible()
 comment8.target=int getSymbolsSize()
 comment9.target=java.util.ArrayList getSymbols()
-numComments=13
+numComments=16
