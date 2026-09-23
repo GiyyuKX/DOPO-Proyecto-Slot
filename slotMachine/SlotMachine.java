@@ -24,29 +24,68 @@ public class SlotMachine
         this.body = new Rectangle(20, 20, 170, 170, "black");
         this.leftLight = new Circle(20, 20, 70, "magenta");
         this.rightLight = new Circle(120, 20, 70, "red");
+        operationOK = true;
     }
     
     public void addWheel(int pos){
+        //Verify pos is valid
+        if (pos < 1 || pos > wheels.size() + 1){
+            operationFail("Posicion dada incorrecta...");
+            return;
+        }
+        
         wheels.add(pos - 1, new Wheel());
+        operationOK = true;
         repositionWheels();
     }
     
     public void delWheel(int pos){
+        //Verify pos is valid
+        if (pos < 1 || pos > wheels.size()){
+            operationFail("Posicion dada incorrecta...");
+            return;
+        }
+        Wheel sWheel = wheels.get(pos - 1);
+        if (sWheel.getActualSymbol() != null) {
+            sWheel.delSymbol(sWheel.getActualSymbol().getColor());
+        }
         wheels.remove(pos - 1);
+        operationOK = true;
         repositionWheels();
     }
     
     public void addSymbol(int pos, String color){
+        //Verify pos is valid
+        if (pos < 1 || pos > wheels.size()){
+            operationFail("Posicion dada incorrecta...");
+            return;
+        }
         wheels.get(pos - 1).addSymbol(color);
+        operationOK = true;
     }
     
     public void delSymbol(String symbol){
+        operationOK = false; //Si no encuentra el simbolo en ninguna rueda
         for(Wheel wheel : wheels){
-            wheel.delSymbol(symbol);
+            if (wheel.containsSymbol(symbol)){
+                wheel.delSymbol(symbol);
+                operationOK = true;
+            }
         }
+        
+        if (!operationOK) {
+            operationFail("El simbolo no existe en ninguna rueda");
+            return;
+        }
+        isJackpot();
     }
     
     public void placeSymbol(int wheel, String symbol){
+        if (wheel < 1 || wheel > wheels.size()){
+            operationFail("Rueda no existe...");
+            return;
+        }
+        
         Wheel selectedWheel = wheels.get(wheel - 1);
         
         if(selectedWheel.containsSymbol(symbol)) {
@@ -58,12 +97,18 @@ public class SlotMachine
     }
     
     public void spin(int wheel){
+        if (wheel < 1 || wheel > wheels.size()){
+            operationFail("Rueda no existe...");
+            return;
+        }
+        
         Wheel sWheel = wheels.get(wheel - 1);
         
         if(sWheel.getSymbolsSize() >= 1){
             int idxRandom = random.nextInt(sWheel.getSymbolsSize());
             String color = sWheel.getSymbolColor(idxRandom);
             placeSymbol(wheel, color);
+            operationOK = true;
         } else {
             operationFail("La rueda no tiene simbolos...");
         }
@@ -74,10 +119,15 @@ public class SlotMachine
     public void spin(){
         for (int i = 0; i < wheels.size(); i++){
             Wheel sWheel = wheels.get(i);
+           
             if (sWheel.getSymbolsSize() >= 1){
                 int idxRandom = random.nextInt(sWheel.getSymbolsSize());
                 String color = sWheel.getSymbolColor(idxRandom);
                 placeSymbol(i + 1, color);
+                operationOK = true;
+            } else{
+                operationFail("Una rueda no tiene simbolos...");
+                return;
             }
         }
         
@@ -117,12 +167,16 @@ public class SlotMachine
     }
     
     public boolean isJackpot(){
+        if(wheels.size() == 0){
+            setColors("magenta", "red", "black");
+            return false;
+        }
+        
         String firstColor = null;
         for (int i = 0; i < wheels.size(); i++) {
             Symbol actualSymbol = wheels.get(i).getActualSymbol();
             if (actualSymbol == null){
                 setColors("magenta", "red", "black");
-                operationFail("Una rueda no tiene simbolos...");
                 return false;
             }
                         
@@ -190,6 +244,7 @@ public class SlotMachine
         if(visible){
             makeVisible();
         }
+        
     }
     
     private void operationFail(String message){

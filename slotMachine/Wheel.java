@@ -28,7 +28,7 @@ public class Wheel
                     actualSymbol.makeInvisible();
                     actualSymbol = null;
                 }
-                    symbols.remove(i);
+                symbols.remove(i);
                 i--;
             }
         }
